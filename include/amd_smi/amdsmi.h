@@ -1716,6 +1716,17 @@ typedef struct {
 #define AMDSMI_DEFAULT_VARIANT 0xFFFFFFFFFFFFFFFF
 
 #ifdef ENABLE_ESMI_LIB
+
+/**
+ * @brief This structure holds SMU Firmware version information.
+ */
+typedef struct {
+        uint8_t major;      //!< Major version number
+        uint8_t minor;      //!< Minor version number
+        uint8_t patch;      //!< Patch version number
+        uint8_t unused;     //!< reserved fields
+} amdsmi_esmi_lib_version_t;
+
 /**
  * @brief This structure holds SMU Firmware version information.
  */
@@ -5318,6 +5329,19 @@ amdsmi_status_t amdsmi_get_cpu_socket_energy(amdsmi_processor_handle processor_h
  *  @return ::amdsmi_status_t | ::AMDSMI_STATUS_SUCCESS on success, non-zero on fail
  */
 amdsmi_status_t amdsmi_get_threads_per_core(uint32_t *threads_per_core);
+
+/**
+ *  @brief Get ESMI Library Version.
+ *
+ *  @platform{cpu_bm}
+ *
+ *  @param[in]      processor_handle Cpu socket which to query
+ *  @param[in,out]    amdsmi_esmi_lib_ver - Input buffer to return the ESMI Library version
+ *
+ *  @return ::amdsmi_status_t | ::AMDSMI_STATUS_SUCCESS on success, non-zero on fail
+ */
+amdsmi_status_t amdsmi_get_cpu_esmi_lib_version(amdsmi_processor_handle processor_handle,
+                                              amdsmi_esmi_lib_version_t *amdsmi_esmi_lib_ver);
 
 /**
  *  @brief Get SMU Firmware Version.

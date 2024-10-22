@@ -2838,6 +2838,28 @@ amdsmi_status_t amdsmi_get_cpu_hsmp_proto_ver(amdsmi_processor_handle processor_
     return AMDSMI_STATUS_SUCCESS;
 }
 
+amdsmi_status_t amdsmi_get_cpu_esmi_lib_version(amdsmi_processor_handle processor_handle,
+                                              amdsmi_esmi_lib_version_t *amdsmi_esmi_lib_ver)
+{
+    amdsmi_status_t status;
+    struct esmi_lib_version esmi_lib_ver;
+
+    AMDSMI_CHECK_INIT();
+
+    if (processor_handle == nullptr)
+        return AMDSMI_STATUS_INVAL;
+
+    status = static_cast<amdsmi_status_t>(esmi_lib_version_get(&esmi_lib_ver));
+    if (status != AMDSMI_STATUS_SUCCESS)
+        return amdsmi_errno_to_esmi_status(status);
+
+    amdsmi_esmi_lib_ver->major = esmi_lib_ver.major;
+    amdsmi_esmi_lib_ver->minor = esmi_lib_ver.minor;
+    amdsmi_esmi_lib_ver->patch = esmi_lib_ver.patch;
+
+    return AMDSMI_STATUS_SUCCESS;
+}
+
 amdsmi_status_t amdsmi_get_cpu_smu_fw_version(amdsmi_processor_handle processor_handle,
                                               amdsmi_smu_fw_version_t *amdsmi_smu_fw)
 {
