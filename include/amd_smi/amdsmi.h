@@ -1723,9 +1723,7 @@ typedef struct {
 typedef struct {
         uint8_t major;      //!< Major version number
         uint8_t minor;      //!< Minor version number
-        uint8_t patch;      //!< Patch version number
-        uint8_t unused;     //!< reserved fields
-} amdsmi_esmi_lib_version_t;
+} amdsmi_hsmp_driver_version_t;
 
 /**
  * @brief This structure holds SMU Firmware version information.
@@ -5331,17 +5329,17 @@ amdsmi_status_t amdsmi_get_cpu_socket_energy(amdsmi_processor_handle processor_h
 amdsmi_status_t amdsmi_get_threads_per_core(uint32_t *threads_per_core);
 
 /**
- *  @brief Get ESMI Library Version.
+ *  @brief Get HSMP Driver Version.
  *
  *  @platform{cpu_bm}
  *
  *  @param[in]      processor_handle Cpu socket which to query
- *  @param[in,out]    amdsmi_esmi_lib_ver - Input buffer to return the ESMI Library version
+ *  @param[in,out]    amdsmi_hsmp_driver_ver - Input buffer to return the HSMP Driver version
  *
  *  @return ::amdsmi_status_t | ::AMDSMI_STATUS_SUCCESS on success, non-zero on fail
  */
-amdsmi_status_t amdsmi_get_cpu_esmi_lib_version(amdsmi_processor_handle processor_handle,
-                                              amdsmi_esmi_lib_version_t *amdsmi_esmi_lib_ver);
+amdsmi_status_t amdsmi_get_cpu_hsmp_driver_version(amdsmi_processor_handle processor_handle,
+                                              amdsmi_hsmp_driver_version_t *amdsmi_hsmp_driver_ver);
 
 /**
  *  @brief Get SMU Firmware Version.
